@@ -1,0 +1,38 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgb(52, 52, 199);
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.photo-card {
+  border: solid;
+  border-color: lightgray;
+  border-width: thin;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+img {
+  padding-top: 0.5rem;
+  width: 315px;
+  height: 251px;
+}
+
+.info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.info-item {
+  margin-right: 0.5rem;
+  font-size: x-small;
+}
