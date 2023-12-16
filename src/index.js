@@ -27,6 +27,7 @@
 
 //       const images = response.data.hits;
 //       displayResults(images);
+
 //       if (images.length === 0 || images.length < 40) {
 //         hideLoadMoreButton();
 //         showAlert("We're sorry, but you've reached the end of search results.");
@@ -58,6 +59,7 @@
 
 //       const newImages = response.data.hits;
 //       appendResults(newImages);
+
 //       if (newImages.length === 0 || newImages.length < 40) {
 //         hideLoadMoreButton();
 //         showAlert("We're sorry, but you've reached the end of search results.");
@@ -149,6 +151,7 @@
 // });
 
 import axios from 'axios';
+import Notiflix from 'notiflix';
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchForm = document.getElementById('search-form');
@@ -180,13 +183,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (images.length === 0 || images.length < 40) {
         hideLoadMoreButton();
-        showAlert("We're sorry, but you've reached the end of search results.");
+        Notiflix.Notify.Failure({
+          message: "We're sorry, but you've reached the end of search results.",
+          timeout: 4000,
+        });
       } else {
         showLoadMoreButton();
       }
     } catch (error) {
       console.error('Error during search:', error);
-      showAlert('Error during search. Please try again later.');
+      Notiflix.Notify.Failure({
+        message: 'Error during search. Please try again later.',
+        timeout: 4000,
+      });
       hideLoadMoreButton();
     }
   });
@@ -212,7 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (newImages.length === 0 || newImages.length < 40) {
         hideLoadMoreButton();
-        showAlert("We're sorry, but you've reached the end of search results.");
+        Notiflix.Notify.Info({
+          message: "We're sorry, but you've reached the end of search results.",
+          timeout: 4000,
+        });
       }
     } catch (error) {
       console.error('Error loading more images:', error);
@@ -225,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (images.length === 0) {
       hideLoadMoreButton();
-      showAlert('No results found.');
+      Notiflix.Notify.Warning({ message: 'No results found.', timeout: 4000 });
       return;
     }
 
@@ -238,7 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function appendResults(newImages) {
     if (newImages.length === 0) {
       hideLoadMoreButton();
-      showAlert("We're sorry, but you've reached the end of search results.");
+      Notiflix.Notify.Info({
+        message: "We're sorry, but you've reached the end of search results.",
+        timeout: 4000,
+      });
       return;
     }
 
@@ -293,9 +308,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function hideLoadMoreButton() {
     loadMoreButton.style.display = 'none';
-  }
-
-  function showAlert(message) {
-    alert(message);
   }
 });
